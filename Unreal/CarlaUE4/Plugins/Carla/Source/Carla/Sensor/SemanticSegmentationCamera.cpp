@@ -25,5 +25,5 @@ ASemanticSegmentationCamera::ASemanticSegmentationCamera(
 void ASemanticSegmentationCamera::Tick(float DeltaTime)
 {
   Super::Tick(DeltaTime);
-  FPixelReader::SendPixelsInRenderThread(*this);
+  FPixelReader::SendPixelsInRenderThread(*this, DeltaTime);
 }

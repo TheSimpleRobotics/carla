@@ -89,7 +89,8 @@ private:
       AActor* Actor,
       AActor* OtherActor,
       FVector NormalImpulse,
-      const FHitResult& Hit);
+      const FHitResult& Hit/*,
+      float DeltaTime*/);
 
   /// @}
   // ===========================================================================

@@ -18,5 +18,5 @@ FActorDefinition ASceneCaptureCamera::GetSensorDefinition()
 void ASceneCaptureCamera::Tick(float DeltaTime)
 {
   Super::Tick(DeltaTime);
-  FPixelReader::SendPixelsInRenderThread(*this);
+  FPixelReader::SendPixelsInRenderThread(*this, DeltaTime);
 }

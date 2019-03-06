@@ -62,7 +62,7 @@ public:
   ///
   /// @pre To be called from game-thread.
   template <typename TSensor>
-  static void SendPixelsInRenderThread(TSensor &Sensor);
+  static void SendPixelsInRenderThread(TSensor &Sensor, float DeltaTime);
 
 private:
 
@@ -81,13 +81,13 @@ private:
 // =============================================================================
 
 template <typename TSensor>
-void FPixelReader::SendPixelsInRenderThread(TSensor &Sensor)
+void FPixelReader::SendPixelsInRenderThread(TSensor &Sensor, float DeltaTime)
 {
   check(Sensor.CaptureRenderTarget != nullptr);
 
   // First we create the message header (needs to be created in the
   // game-thread).
-  auto AsyncStream = Sensor.GetDataStream(Sensor);
+  auto AsyncStream = Sensor.GetDataStream(Sensor, DeltaTime);
 
   // We need a shared ptr here because UE4 macros do not move the arguments -_-
   auto StreamPtr = std::make_shared<decltype(AsyncStream)>(std::move(AsyncStream));

@@ -134,7 +134,7 @@ void AObstacleDetectionSensor::Tick(float DeltaSeconds)
 
   if (isHitReturned)
   {
-    OnObstacleDetectionEvent(this, HitOut.Actor.Get(), HitOut.Distance, HitOut);
+    OnObstacleDetectionEvent(this, HitOut.Actor.Get(), HitOut.Distance, HitOut, DeltaSeconds);
   }
 }
 
@@ -142,11 +142,12 @@ void AObstacleDetectionSensor::OnObstacleDetectionEvent(
     AActor *Actor,
     AActor *OtherActor,
     float HitDistance,
-    const FHitResult &Hit)
+    const FHitResult &Hit,
+	float DeltaSeconds)
 {
   if ((Episode != nullptr) && (Actor != nullptr) && (OtherActor != nullptr))
   {
-    GetDataStream(*this).Send(*this,
+    GetDataStream(*this, DeltaSeconds).Send(*this,
         Episode->SerializeActor(Episode->FindOrFakeActor(Actor)),
         Episode->SerializeActor(Episode->FindOrFakeActor(OtherActor)),
         HitRadius);

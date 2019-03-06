@@ -37,10 +37,10 @@ public:
   ///
   /// @pre This functions needs to be called in the game-thread.
   template <typename SensorT>
-  auto MakeAsyncDataStream(const SensorT &Sensor)
+  auto MakeAsyncDataStream(const SensorT &Sensor, float Timepoint)
   {
     check(Stream.has_value());
-    return FAsyncDataStreamTmpl<T>{Sensor, *Stream};
+    return FAsyncDataStreamTmpl<T>{Sensor, Timepoint, *Stream};
   }
 
   /// Return the token that allows subscribing to this stream.

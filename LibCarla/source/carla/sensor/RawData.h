@@ -37,6 +37,11 @@ namespace sensor {
      return GetHeader().frame_number;
     }
 
+    /// Time when the data was generated.
+    double GetTime() const {
+     return GetHeader().game_timestamp;
+    }
+
     /// Sensor's transform when the data was generated.
     const rpc::Transform &GetSensorTransform() const {
      return GetHeader().sensor_transform;
